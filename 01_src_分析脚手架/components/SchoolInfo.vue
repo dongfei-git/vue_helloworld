@@ -1,10 +1,9 @@
 <template>
   <!--  组件的结构-->
   <div class="demo">
-    <h1 ref="title">欢迎学习Vue</h1>
     <h2>学校名称：{{ schoolName }}</h2>
     <h2>学校地址：{{ schoolAddress }}</h2>
-    <button @click="showName">点我显示title</button>
+    <button @click="showName">点我显示学校名</button>
   </div>
 </template>
 
@@ -20,7 +19,7 @@ export default {
   },
   methods: {
     showName() {
-      console.log(this.$refs.title)
+      alert(this.schoolName)
     }
   }
 }
