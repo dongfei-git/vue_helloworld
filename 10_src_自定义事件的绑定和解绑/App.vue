@@ -25,6 +25,7 @@ export default {
     }
   },
   mounted() {
+    // 通过ref给Student绑定getStudentNameEvent自定义事件
     this.$refs.student.$on('getStudentNameEvent', this.getStudentName)
   }
 }

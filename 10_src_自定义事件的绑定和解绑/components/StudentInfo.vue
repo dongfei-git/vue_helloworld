@@ -20,7 +20,8 @@ export default {
   },
   methods:{
     sendStudentName(){
-      this.$emit('getStudentNameEvent', this.studentName, 'other') //触发recvStudentName事件
+      //触发getStudentNameEvent事件
+      this.$emit('getStudentNameEvent', this.studentName, 'other')
     },
     unbind(){
       // this.$off('getStudentNameEvent')  // 解绑一个自定义事件

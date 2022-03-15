@@ -46,49 +46,33 @@ export default {
       this.todos = this.todos.filter(todo => todo.id !== id)
     },
     //全选或取消全选
-    checkAllTodo(done) {
-      this.todos.forEach((todo) => {
+    checkAllTodo(done){
+      this.todos.forEach((todo)=>{
         todo.done = done
       })
     },
-    clearAllTodo() {
-      this.todos = this.todos.filter(todo => !todo.done)
-    },
-    checkIsEdit(todo){
-      if (todo.hasOwnProperty('isEdit')) {
-        todo.isEdit = true
-      } else {
-        this.$set(todo,'isEdit',true)
-      }
-    },
-    updateTodo(id,title){
-      this.todos.forEach((todo)=>{
-        if (todo.id === id) todo.title = title
-      })
+    clearAllTodo(){
+      this.todos = this.todos.filter(todo=>!todo.done)
     }
   },
-  watch: {
-    todos: {
-      deep: true,
-      handler(value) {
-        localStorage.setItem('todos', JSON.stringify(value))
+  watch:{
+    todos:{
+      deep:true,
+      handler(value){
+        localStorage.setItem('todos',JSON.stringify(value))
       }
     }
   },
   mounted() {
     // 在事件总线绑定事件
-    this.$bus.$on('checkTodo', this.checkTodo)
-    this.$bus.$on('checkIsEdit', this.checkIsEdit)
-    this.$bus.$on('updateTodo', this.updateTodo)
+    this.$bus.$on('checkTodo',this.checkTodo)
     // this.$bus.$on('deleteTodo',this.deleteTodo)
     // 订阅消息
     this.pubId = pubsub.subscribe('deleteTodo', this.deleteTodo)
   },
-  beforeDestroy() {
+  beforeDestroy(){
     // 在组件销毁前注销事件
     this.$bus.$off('checkTodo')
-    this.$bus.$off('checkIsEdit')
-    this.$bus.$off('updateTodo')
     // this.$bus.$off('deleteTodo')
     pubsub.unsubscribe(this.pubId)
   }
@@ -118,13 +102,6 @@ body {
   color: #fff;
   background-color: #da4f49;
   border: 1px solid #bd362f;
-}
-
-.btn-edit {
-  color: #fff;
-  background-color: skyblue;
-  border: 1px solid rgb(103, 159, 180);
-  margin-right: 5px;
 }
 
 .btn-danger:hover {
