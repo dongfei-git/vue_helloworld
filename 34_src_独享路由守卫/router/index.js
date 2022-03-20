@@ -28,7 +28,14 @@ const router = new VueRouter({
                     name: 'news',
                     meta: {title: '新闻', isAuth: true},
                     path: 'news',
-                    component: News
+                    component: News,
+                    beforeEnter: (to, from, next) => {
+                        if (localStorage.getItem('name') === 'admin') {
+                            next() // 放行
+                        } else {
+                            alert('权限拒绝！')
+                        }
+                    }
                 },
                 {
                     name: 'message',
@@ -49,5 +56,23 @@ const router = new VueRouter({
         }
     ]
 })
+
+// // 在每次路由切换之前操作, 全局前置路由守卫
+// router.beforeEach((to,from,next)=>{
+//     if(to.meta.isAuth) {
+//         if(localStorage.getItem('name') === 'admin') {
+//             next() // 放行
+//         } else {
+//             alert('权限拒绝！')
+//         }
+//     } else {
+//         next()
+//     }
+// })
+//
+// // 后置路由守卫
+// router.afterEach((to, from)=>{
+//     document.title = to.meta.title || 'router路由器'
+// })
 
 export default router

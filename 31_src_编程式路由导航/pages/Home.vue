@@ -10,10 +10,7 @@
           <router-link replace class="list-group-item" active-class="active" to="/home/news">News</router-link>
         </li>
       </ul>
-<!--      路由缓存,可以保证include的组件不被销毁，include="组件名"，多个组件写数组-->
-      <keep-alive include="News">
-        <router-view></router-view>
-      </keep-alive>
+      <router-view></router-view>
     </div>
   </div>
 </template>
